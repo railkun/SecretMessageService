@@ -5,7 +5,7 @@
       Your message deleted after first visit
       <a href="/message/<%=@message.fake_id%>">/message/<%=@message.fake_id%><a>
     <% else @message.message_type == 'after_hour' %>
-      Your message deleted <%= @message.created_at +  1.hour %>
+      Your message deleted <%= @message.created_at + 1.hour %>
       <a href="/message/<%=@message.fake_id%>">/message/<%=@message.fake_id%><a>
     <% end %>
   <% end %>
