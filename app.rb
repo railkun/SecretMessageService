@@ -10,9 +10,7 @@ require_relative 'workers/message_worker.rb'
 
 class App < Sinatra::Base
 
-  get "/" do
-    erb :home
-  end
+
 
   post "/create" do
     message = Message.new(body: params[:body], message_type: params[:message_type])
@@ -20,11 +18,18 @@ class App < Sinatra::Base
     if message.message_type == 'after_hour'
       MessageWorker.perform_in(1.minutes, message.id)
     end
-    message.fake_id
+    redirect to("/?fake_id=#{message.fake_id}")
+  end
+
+  get "/" do
+   @message = Message.find_by(fake_id: params[:fake_id])
+   erb :home
+
   end
 
   get '/message/:fake_id' do
     message = Message.find_by(fake_id: params[:fake_id])
+    message.created_at = Time.now
     if message.message_type == 'first_visit'
       message.deleted_at = Time.now
     end

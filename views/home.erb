@@ -1,13 +1,26 @@
-<form method="post" action="/create">
 
- <textarea name="body" rows="10" cols="30">
- </textarea>
+<div>
+  <% if @message.present? %>
+    <% if @message.message_type == 'first_visit' %>
+      Your message deleted after first visit
+      <a href="/message/<%=@message.fake_id%>">/message/<%=@message.fake_id%><a>
+    <% else @message.message_type == 'after_hour' %>
+      Your message deleted <%= @message.created_at +  1.hour %>
+      <a href="/message/<%=@message.fake_id%>">/message/<%=@message.fake_id%><a>
+    <% end %>
+  <% end %>
 
- <select name="message_type">
-   <option value="first_visit"> Destroy this message after firt visit </option>
-   <option value="after_hour"> Destroy this message after one hour </option>
- </select>
+  <form method="post" action="/create">
 
- <input type="submit" value="submit" >
+   <textarea name="body" rows="10" cols="30">
+   </textarea>
 
-</form>
+   <select name="message_type">
+     <option value="first_visit"> Destroy this message after firt visit </option>
+     <option value="after_hour"> Destroy this message after one hour </option>
+   </select>
+
+   <input type="submit" value="submit" >
+
+  </form>
+</div>
