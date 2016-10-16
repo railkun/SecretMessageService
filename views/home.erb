@@ -1,23 +1,5 @@
-<style>
-  .text1{
-
-    text-align: center;
-    margin-top: 30px;
-    margin-right: 450px;
-    margin-left: 450px;
-    padding-top: 9px;
-    padding-right: 9px;
-    padding-bottom: 9px;
-    padding-left: 9px;
-    border-style: solid;
-    border-top: 0px;
-    border-bottom: 0px;
-  }
-
-
-</style>
-
-<div class="text1">
+<div class="container">
+  <h1>Secret message service</h1>
   <% if @message.present? %>
     <% if @message.message_type == 'first_visit' %>
       <p><strong>Your message deleted after first visit:</strong></p>
@@ -29,7 +11,7 @@
       <a href="/message/<%=@message.fake_id%>" type="button">
         <button>
           Open your message
-        </button>  
+        </button>
       </a>
     </p>
   <% end %>
@@ -37,12 +19,12 @@
   <form method="post" action="/create">
 
     <p>
-      <textarea name="body" rows="10" cols="30">
+      <textarea name="body" rows="10" cols="30" required>
       </textarea>
     <p>
 
     <p>
-      <select name="message_type">
+      <select name="message_type" required>
       <option value="first_visit"> Destroy this message after firt visit </option>
       <option value="after_hour"> Destroy this message after one hour </option>
       </select>

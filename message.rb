@@ -1,6 +1,9 @@
 class Message < ActiveRecord::Base
 
-  attr_encrypted :body, key: '#fy@iDpd5pNyDU1(RppK*BbWGpPZdx&&'
+  validates :body, presence: true
+  validates :message_type, presence: true
+
+  attr_encrypted :body, key: Settings.message_secret
 
   default_scope { where(deleted_at: nil) }
 

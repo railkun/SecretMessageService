@@ -1,6 +1,12 @@
 require 'sinatra'
 require 'sinatra/activerecord'
 
+require 'config'
+set :root, File.dirname(__FILE__)
+register Config
+
+set :public_folder, File.dirname(__FILE__) + '/public/css/style'
+
 require 'attr_encrypted'
 require './message'
 require 'sidekiq'
@@ -8,6 +14,8 @@ require 'sidekiq/api'
 require 'sidekiq/web'
 
 require_relative 'workers/message_worker.rb'
+
+
 
 class App < Sinatra::Base
 
@@ -29,12 +37,17 @@ class App < Sinatra::Base
   end
 
   get '/message/:fake_id' do
-    @message = Message.find_by(fake_id: params[:fake_id])
-    @message.created_at = Time.now
-    if @message.message_type == 'first_visit'
-      @message.deleted_at = Time.now
+    @message = Message.where(fake_id: params[:fake_id]).first
+    if @message
+      @message.created_at = Time.now
+      if @message.message_type == 'first_visit'
+        @message.deleted_at = Time.now
+      end
+      @message.save
+      erb :message
+    else
+      # тут зміниш анлійською не правильно
+      erb :error_message
     end
-    @message.save
-    erb :message
   end
 end

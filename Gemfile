@@ -7,14 +7,20 @@ gem "pg"
 gem "rake"
 gem 'sidekiq'
 gem "attr_encrypted", "~> 3.0.0"
-gem "rspec"
-gem "rack-test"
+gem "config"
+
+
 
 group :development do
- gem "tux"
- gem 'shotgun'
+  gem "tux"
+  gem 'shotgun'
 end
 
 group :test do
   gem 'database_cleaner'
+  gem 'capybara'
+  gem "rack-test"
+  gem "rspec"
+  gem 'test-unit'
+
 end
