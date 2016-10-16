@@ -1,4 +1,4 @@
-# secret_message
+# Secret Message Service
 This is my test task
 
 
