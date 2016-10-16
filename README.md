@@ -7,14 +7,12 @@ In order to start this app you need use this command:
 $ rackup
 ```
   
-Then you have to use this command:
+Then you should start sidekiq:
 ```
 $ bundle exec sidekiq -r ./app.rb
 ```  
-this command launches `gem 'sidekiq'` 
 
-
-To test run the command: 
+To start tests run this command:
 ```  
 $ rspec spec
 ```
