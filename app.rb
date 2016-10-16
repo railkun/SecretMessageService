@@ -5,8 +5,6 @@ require 'config'
 set :root, File.dirname(__FILE__)
 register Config
 
-set :public_folder, File.dirname(__FILE__) + '/public/css/style'
-
 require 'attr_encrypted'
 require './message'
 require 'sidekiq'
@@ -15,11 +13,7 @@ require 'sidekiq/web'
 
 require_relative 'workers/message_worker.rb'
 
-
-
 class App < Sinatra::Base
-
-
 
   post "/create" do
     @message = Message.new(body: params[:body], message_type: params[:message_type])
