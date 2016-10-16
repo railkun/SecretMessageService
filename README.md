@@ -4,17 +4,17 @@ This is my test task
 
 In order to start this app you need use this command:
 
-  "rackup"
+  `rackup`
   
 Then you have to use this command:
 
-  "bundle exec sidekiq -r ./app.rb"
+ `bundle exec sidekiq -r ./app.rb`
   
-this command launches gem 'sidekiq' 
+this command launches `gem 'sidekiq'` 
 
 
 To test run the command: 
-  "rspec spec" 
+  `rspec spec` 
   
 Thank you for attention!  
 
