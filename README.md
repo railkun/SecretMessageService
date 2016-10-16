@@ -3,8 +3,10 @@ This is my test task
 
 
 In order to start this app you need use this command:
+```
+bash $ rackup
 
-  `rackup`
+```
   
 Then you have to use this command:
 
