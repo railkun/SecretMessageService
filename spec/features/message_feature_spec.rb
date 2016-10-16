@@ -8,19 +8,19 @@ class HelloWorldTest < Test::Unit::TestCase
     Capybara.app = App
   end
 
-  def test_it_works
+  def test_home_page
     visit '/'
     assert page.has_content?('Secret message service')
   end
 
-  def test_it_says_hello_world
+  def test_redirect
     visit '/'
     fill_in('body', with: 'HelloWorldBaby')
     click_button('submit')
     assert page.has_content?(Message.last.fake_id)
   end
 
-  def test_visit_message
+  def test_visit_message_page
     visit '/'
     fill_in('body', with: 'New littel test this message')
     click_button('submit')
@@ -28,7 +28,7 @@ class HelloWorldTest < Test::Unit::TestCase
     assert page.has_content?('New littel test this message')
   end
 
-  def test_works_scope
+  def test_deleted_at
     message = Message.create(body:'Hello!', message_type: 'first_visit')
     visit ("/message/#{message.fake_id}")
     assert page.has_content?('Hello!')

@@ -1,7 +1,7 @@
 require "spec_helper"
 
 describe "message" do
-  it "create_new_message" do
+  it "create new message" do
     message = Message.create(body:'Hello!', message_type: 'first_visit')
     expect(message.fake_id).not_to be_nil
     expect(message).to be_valid

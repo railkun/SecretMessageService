@@ -46,7 +46,6 @@ class App < Sinatra::Base
       @message.save
       erb :message
     else
-      # тут зміниш анлійською не правильно
       erb :error_message
     end
   end

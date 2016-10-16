@@ -4,6 +4,5 @@ class MessageWorker
     m = Message.find(message_id)
     m.deleted_at = Time.now
     m.save
-    # do something
   end
 end
